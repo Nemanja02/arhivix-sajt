@@ -24,11 +24,11 @@
     {
       name: 'Basic',
       desc: 'Za male firme koje žele urednu digitalnu arhivu i osnovne funkcije bez komplikacija.',
-      monthly: 2900,
-      yearly: 2465,
+      monthly: 3000,
+      yearly: 2550,
       features: [
-        '100 arhiviranih dokumenata mesečno.',
-        '50 žigova mesečno',
+        '100 arhiviranih dokumenata mesečno',
+        '50 vremenskih žigova mesečno',
         'Automatsko arhiviranje'
       ],
       popular: false
@@ -36,24 +36,26 @@
     {
       name: 'Premium',
       desc: 'Za preduzeća sa većim obimom dokumenata i potrebom za bržim, fleksibilnijim radom.',
-      monthly: 4200,
-      yearly: 3570,
+      monthly: 4800,
+      yearly: 4080,
       features: [
-        '300 arhiviranih dokumenata mesečno.',
-        '150 žigova mesečno',
+        '300 arhiviranih dokumenata mesečno',
+        '150 vremenskih žigova mesečno',
         'Automatsko arhiviranje'
       ],
       popular: false
     },
     {
       name: 'Ultimate',
-      desc: 'Za kompanije koje rade intenzivno i traže najviše kapacitete i punu automatizaciju.',
-      monthly: 5400,
-      yearly: 4590,
+      desc: 'Za kompanije koje rade intenzivno i traže najviše kapacitete, AI funkcije i punu automatizaciju.',
+      monthly: 6200,
+      yearly: 5270,
       features: [
-        '1000 arhiviranih dokumenata mesečno.',
-        '500 žigova mesečno',
-        'Automatsko arhiviranje'
+        '1000 arhiviranih dokumenata mesečno',
+        '500 vremenskih žigova mesečno',
+        'Automatsko arhiviranje',
+        'AI pretraga dokumenata',
+        'Sumiranje dokumenata pomoću AI'
       ],
       popular: true
     }
@@ -143,6 +145,15 @@
           </a>
         </div>
       {/each}
+    </div>
+
+    <div class="pricing-note animate-on-scroll" use:scrollReveal>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M8 7V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="8" cy="5" r="0.75" fill="currentColor"/>
+      </svg>
+      <span><strong>Vremenski žigovi</strong> su digitalni potpisi sa tačnim vremenom izdavanja. Koriste se za elektronsko potpisivanje dokumenata i pravno dokazuju kada je dokument potpisan.</span>
     </div>
   </div>
 </section>
@@ -313,6 +324,26 @@
     padding: 0.85rem;
     text-align: center;
     font-size: var(--font-size-sm);
+  }
+
+  .pricing-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    max-width: 600px;
+    margin: 2rem auto 0;
+    padding: 1rem 1.25rem;
+    background: var(--color-bg-card);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .pricing-note svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--color-primary);
   }
 
   @media (max-width: 900px) {

@@ -6,20 +6,24 @@
 
   const faqs = [
     {
-      q: 'Da li su moji dokumenti bezbedni?',
-      a: 'Da. Svi dokumenti su enkriptovani, čuvaju se na sigurnom cloudu i repliciraju na dve odvojene lokacije. Kontrola pristupa obezbeđuje da samo ovlašćeni korisnici mogu da ih vide.'
+      q: 'Gde se čuvaju moji dokumenti?',
+      a: 'Vaši dokumenti se čuvaju na Amazon Web Services (AWS) cloud infrastrukturi. Konkretno, koristimo dva odvojena S3 skladišta u dva različita evropska regiona. To znači da čak i u slučaju tehničkih problema u jednom regionu, vaši dokumenti su i dalje bezbedni i dostupni u drugom. Sve je automatski enkriptovano.'
     },
     {
-      q: 'Kako da počnem?',
-      a: 'Registrujte se za besplatan 14-dnevni probni period. Nakon registracije, možete odmah početi sa unošenjem dokumenata i korišćenjem svih funkcija sistema.'
+      q: 'Da li neko može da pristupi mojim fajlovima bez mog znanja?',
+      a: 'Ne. Svi fajlovi su enkriptovani i ne mogu se otvoriti bez posebnog ključa koji je vezan za vaš nalog. Čak ni naš tim nema pristup vašim dokumentima. Za svakog korisnika u vašoj firmi možete podesiti individualne dozvole: ko može da vidi, menja ili preuzima svaki dokument.'
     },
     {
-      q: 'Da li je sistem usklađen sa zakonskim obavezama?',
-      a: 'Da. Arhivix je u potpunosti usklađen sa zakonom o elektronskom dokumentu, elektronskoj identifikaciji i uslugama od poverenja u elektronskom poslovanju, kao i sa drugim relevantnim propisima.'
+      q: 'Šta je veštačka inteligencija u Arhivix-u?',
+      a: 'Arhivix automatski indeksira svaki dokument koji unesete. Naš AI sistem čita i razume sadržaj dokumenata, pa ih možete pretraživati prirodnim jezikom. Na primer, možete ukucati "Pronađi mi račun za telefon iz aprila" i sistem će pronaći tačan dokument. Bez ručnog pretraživanja, bez gubljenja vremena.'
     },
     {
-      q: 'Da li mi je potreban internet za korišćenje?',
-      a: 'Da, potrebna vam je internet konekcija za pristup sistemu. Svi podaci se čuvaju na cloudu kako bi bili dostupni sa bilo kog uređaja, u bilo kom trenutku.'
+      q: 'Da li je sistem usklađen sa novim zakonom o elektronskim otpremnicama?',
+      a: 'Da, u potpunosti. Od 1. januara 2026. elektronske otpremnice su zakonska obaveza. Arhivix podržava kreiranje, slanje, prijem i arhiviranje elektronskih otpremnica i prijemnica u skladu sa svim propisima.'
+    },
+    {
+      q: 'Šta ako nisam tehnički osoba? Da li je komplikovano za korišćenje?',
+      a: 'Uopšte ne. Arhivix je dizajniran da bude jednostavan za svakoga. Dokument se arhivira u tri koraka, pretraga funkcioniše kao razgovor sa asistentom, a ceo sistem je intuitivan. Ako vam ipak zatreba pomoć, tu smo 24/7.'
     }
   ];
 

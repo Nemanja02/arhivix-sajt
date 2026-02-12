@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:arhivix.com)",
+      "Bash(dir:*)",
+      "WebFetch(domain:webcache.googleusercontent.com)",
+      "Bash(npx vite build)",
+      "Bash(npm run build:*)",
+      "Bash(curl:*)",
+      "Bash(npm install:*)",
+      "Bash(ls -la \"c:\\\\Posao\\\\arhivix\\\\sajt2\\\\static\\\\images\\\\misc\"\" && ls -la \"c:Posaoarhivixsajt2staticimagesblog\"\")",
+      "Bash(ls -la \"c:\\\\Posao\\\\arhivix\\\\sajt2\\\\static\\\\images\\\\features\"\" && ls -la \"c:Posaoarhivixsajt2staticimagesreviews\"\")",
+      "Bash(npm uninstall:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote add:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}

@@ -22,10 +22,10 @@
           alt="Arhivix"
           class="cta-illustration"
         />
-        <h2>Isprobajte Arhivix<br />besplatno 14 dana</h2>
-        <p>Preuzmite kontrolu nad svojom dokumentacijom</p>
+        <h2>Prestanite da gubite vreme<br />na traženje dokumenata.</h2>
+        <p>Pridružite se preko 300 firmi koje su već prešle na pametniji način upravljanja dokumentacijom. Bez obaveza, bez kartice. 14 dana besplatno.</p>
         <a href="/register" class="btn btn-primary btn-large cta-btn">
-          Isprobajte 14 dana besplatno
+          Započnite besplatno
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M3.75 9H14.25M14.25 9L9.75 4.5M14.25 9L9.75 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>

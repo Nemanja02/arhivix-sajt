@@ -5,20 +5,20 @@
 
   const tabs = [
     {
-      title: 'Organizacija dokumenata',
-      description: 'Sve je na jednom mestu – bez gubljenja papira, brže pretraživanje i uredan tok informacija kroz ceo poslovni sistem.',
+      title: 'Kraj haosa sa papirima',
+      description: 'Sve fakture, otpremnice, ugovori i dokumenti na jednom mestu. Pretražujte ih slobodnim jezikom, pristupajte im sa bilo kog uređaja. Bez fascikli, bez nerviranja, bez gubljenja vremena.',
       image: '/images/features/organizacija.png',
       icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>'
     },
     {
-      title: 'Digitalno poslovanje',
-      description: 'Elektronske fakture i otpremnice u par klikova. Brži proces, manje grešaka i automatsko prosleđivanje knjigovođi.',
+      title: 'Elektronske fakture i otpremnice bez glavobolje',
+      description: 'Kreirajte, šaljite i upravljajte elektronskim fakturama i otpremnicama u par klikova. Automatsko prosleđivanje knjigovođi. Manje grešaka, brži proces, potpuna kontrola.',
       image: '/images/features/digitalno.png',
       icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>'
     },
     {
-      title: 'Sigurnost',
-      description: 'Podaci su zaštićeni naprednim kontrolama. Dodeli uloge, ograniči pristup i prati aktivnosti tima u realnom vremenu.',
+      title: 'Vaši podaci su samo vaši',
+      description: 'Enkripcija na svakom fajlu, skladištenje na dva AWS evropska regiona, granularna kontrola pristupa za svakog korisnika. Vaši dokumenti su bezbedniji nego u fizičkom sefu.',
       image: '/images/features/sigurnost.png',
       icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>'
     }
@@ -28,8 +28,8 @@
 <section class="features-section section" id="funkcije" use:scrollReveal>
   <div class="container animate-on-scroll" use:scrollReveal>
     <div class="features-header text-center">
-      <span class="section-label">Ključne funkcije koje ubrzavaju vaš rad</span>
-      <h2 class="section-title">Za šta služi Arhivix?</h2>
+      <span class="section-label">Ključne funkcije</span>
+      <h2 class="section-title">Sve što vam treba. Ništa što vam ne treba.</h2>
     </div>
 
     <div class="features-tabs">

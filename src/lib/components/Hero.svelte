@@ -27,14 +27,14 @@
       </a>
 
       <h1 class="hero-title">
-        Organizujte svu<br />
-        dokumentaciju na<br />
-        <span class="hero-title-highlight">jednom mestu.</span>
+        Zaboravite na izgubljene<br />
+        dokumente. <span class="hero-title-highlight">Neka AI<br />radi umesto vas.</span>
       </h1>
 
       <p class="hero-subtitle">
-        Pametniji način da organizujete svoju dokumentaciju<br class="hide-mobile" />
-        i ostanete u skladu sa zakonom
+        Arhivix čuva, štiti i organizuje celokupnu dokumentaciju vaše firme<br class="hide-mobile" />
+        uz pomoć veštačke inteligencije. Elektronske fakture, otpremnice,<br class="hide-mobile" />
+        arhivska knjiga. Sve na jednom mestu, potpuno usklađeno sa zakonom.
       </p>
 
       <div class="hero-cta">

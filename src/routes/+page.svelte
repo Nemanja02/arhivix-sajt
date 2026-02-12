@@ -1,5 +1,7 @@
 <script>
   import Hero from '$lib/components/Hero.svelte';
+  import SecuritySection from '$lib/components/SecuritySection.svelte';
+  import AISearch from '$lib/components/AISearch.svelte';
   import FeatureTabs from '$lib/components/FeatureTabs.svelte';
   import Stats from '$lib/components/Stats.svelte';
   import BentoFeatures from '$lib/components/BentoFeatures.svelte';
@@ -13,11 +15,13 @@
 </script>
 
 <svelte:head>
-  <title>Arhivix | Vaša dokumentacija na dohvat ruke</title>
-  <meta name="description" content="Organizujte svu dokumentaciju na jednom mestu. Pametniji način da organizujete svoju dokumentaciju i ostanete u skladu sa zakonom." />
+  <title>Arhivix | AI platforma za upravljanje dokumentacijom</title>
+  <meta name="description" content="Arhivix čuva, štiti i organizuje celokupnu dokumentaciju vaše firme uz pomoć veštačke inteligencije. Elektronske fakture, otpremnice, arhivska knjiga, sve na jednom mestu." />
 </svelte:head>
 
 <Hero />
+<SecuritySection />
+<AISearch />
 <FeatureTabs />
 <Stats />
 <BentoFeatures />

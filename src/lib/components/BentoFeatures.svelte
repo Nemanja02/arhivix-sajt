@@ -29,7 +29,7 @@
     },
     {
       title: 'Kontrola pristupa',
-      desc: 'Granularne dozvole i uloge — svaki korisnik vidi samo dokumente i funkcije koje su mu dodeljene.',
+      desc: 'Granularne dozvole i uloge. Svaki korisnik vidi samo dokumente i funkcije koje su mu dodeljene.',
       icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/><circle cx="12" cy="16" r="1"/></svg>'
     }
   ];
@@ -38,9 +38,9 @@
 <section class="bento-section section">
   <div class="container">
     <div class="bento-header text-center animate-on-scroll" use:scrollReveal>
-      <h2 class="section-title">Pripremite se za 2026. Bez stresa</h2>
+      <h2 class="section-title">Elektronske otpremnice su zakonska obaveza od 1. januara 2026.</h2>
       <p class="section-subtitle mx-auto">
-        Naš softver automatizuje otpremnice, arhiviranje i fakturisanje – sve u skladu sa novim zakonom.
+        Novi zakon zahteva da sve firme koriste elektronske otpremnice. Nema izuzetaka, nema odlaganja. Arhivix vam omogućava da budete usklađeni od prvog dana, bez stresa i bez komplikacija.
       </p>
     </div>
 
