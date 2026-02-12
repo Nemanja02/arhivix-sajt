@@ -3,7 +3,7 @@
 
   import { tick } from 'svelte';
 
-  let isYearly = false;
+  let isYearly = true;
   let toggleBtns = [];
   let indicatorLeft = 0;
   let indicatorWidth = 0;
@@ -25,11 +25,13 @@
       name: 'Basic',
       desc: 'Za male firme koje žele urednu digitalnu arhivu i osnovne funkcije bez komplikacija.',
       monthly: 3000,
-      yearly: 2550,
+      yearly: 2600,
       features: [
-        '100 arhiviranih dokumenata mesečno',
-        '50 vremenskih žigova mesečno',
-        'Automatsko arhiviranje'
+        { text: 'Do 5 korisnika', ai: false },
+        { text: '1 radni prostor', ai: false },
+        { text: '100 arhiviranih dokumenata mesečno', ai: false },
+        { text: '50 vremenskih žigova mesečno', ai: false },
+        { text: 'Automatsko arhiviranje', ai: false }
       ],
       popular: false
     },
@@ -37,11 +39,13 @@
       name: 'Premium',
       desc: 'Za preduzeća sa većim obimom dokumenata i potrebom za bržim, fleksibilnijim radom.',
       monthly: 4800,
-      yearly: 4080,
+      yearly: 4100,
       features: [
-        '300 arhiviranih dokumenata mesečno',
-        '150 vremenskih žigova mesečno',
-        'Automatsko arhiviranje'
+        { text: 'Do 10 korisnika', ai: false },
+        { text: '3 radna prostora', ai: false },
+        { text: '300 arhiviranih dokumenata mesečno', ai: false },
+        { text: '150 vremenskih žigova mesečno', ai: false },
+        { text: 'Automatsko arhiviranje', ai: false }
       ],
       popular: false
     },
@@ -49,13 +53,15 @@
       name: 'Ultimate',
       desc: 'Za kompanije koje rade intenzivno i traže najviše kapacitete, AI funkcije i punu automatizaciju.',
       monthly: 6200,
-      yearly: 5270,
+      yearly: 5300,
       features: [
-        '1000 arhiviranih dokumenata mesečno',
-        '500 vremenskih žigova mesečno',
-        'Automatsko arhiviranje',
-        'AI pretraga dokumenata',
-        'Sumiranje dokumenata pomoću AI'
+        { text: 'Do 20 korisnika', ai: false },
+        { text: '5 radnih prostora', ai: false },
+        { text: '1000 arhiviranih dokumenata mesečno', ai: false },
+        { text: '500 vremenskih žigova mesečno', ai: false },
+        { text: 'Automatsko arhiviranje', ai: false },
+        { text: 'AI pretraga dokumenata', ai: true },
+        { text: 'Sumiranje dokumenata pomoću AI', ai: true }
       ],
       popular: true
     }
@@ -126,11 +132,18 @@
 
           <ul class="plan-features">
             {#each plan.features as feature}
-              <li>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path d="M13 4L6 12L3 9" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                {feature}
+              <li class:ai-feature={feature.ai}>
+                {#if feature.ai}
+                  <svg class="sparkle-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M8 1L9.5 6.5L15 8L9.5 9.5L8 15L6.5 9.5L1 8L6.5 6.5L8 1Z" fill="url(#sparkle-grad)" stroke="url(#sparkle-grad)" stroke-width="0.5" stroke-linejoin="round"/>
+                    <defs><linearGradient id="sparkle-grad" x1="1" y1="1" x2="15" y2="15"><stop stop-color="#a855f7"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
+                  </svg>
+                {:else}
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M13 4L6 12L3 9" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                {/if}
+                {feature.text}
               </li>
             {/each}
           </ul>
@@ -221,7 +234,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
-    align-items: start;
+    align-items: stretch;
   }
 
   .pricing-card {
@@ -231,6 +244,8 @@
     padding: 2rem;
     position: relative;
     transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
   }
 
   .pricing-card:hover {
@@ -239,8 +254,13 @@
   }
 
   .pricing-card.popular {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 1px var(--color-primary), var(--shadow-lg);
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 1px #7c3aed, 0 8px 32px rgba(124, 58, 237, 0.15);
+    background: linear-gradient(180deg, #faf5ff 0%, var(--color-white) 40%);
+  }
+
+  .pricing-card.popular:hover {
+    box-shadow: 0 0 0 1px #7c3aed, 0 12px 40px rgba(124, 58, 237, 0.25);
   }
 
   .popular-badge {
@@ -248,7 +268,7 @@
     top: -12px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--color-primary);
+    background: linear-gradient(135deg, #a855f7, #7c3aed);
     color: white;
     font-size: var(--font-size-xs);
     font-weight: 700;
@@ -305,6 +325,7 @@
     flex-direction: column;
     gap: 0.75rem;
     margin-bottom: 2rem;
+    flex: 1;
   }
 
   .plan-features li {
@@ -319,11 +340,35 @@
     flex-shrink: 0;
   }
 
+  .ai-feature {
+    color: #6d28d9;
+    font-weight: 600;
+  }
+
+  .sparkle-icon {
+    animation: sparkle-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes sparkle-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(0.9); }
+  }
+
   .btn-plan {
     width: 100%;
     padding: 0.85rem;
     text-align: center;
     font-size: var(--font-size-sm);
+  }
+
+  .pricing-card.popular .btn-plan.btn-primary {
+    background: linear-gradient(135deg, #a855f7, #7c3aed);
+    border-color: #7c3aed;
+  }
+
+  .pricing-card.popular .btn-plan.btn-primary:hover {
+    background: linear-gradient(135deg, #9333ea, #6d28d9);
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4);
   }
 
   .pricing-note {
