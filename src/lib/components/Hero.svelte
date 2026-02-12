@@ -18,9 +18,9 @@
 
   <div class="container">
     <div class="hero-content" class:visible={heroVisible}>
-      <a href="/register" class="hero-badge">
+      <a href="#cenovnik" class="hero-badge">
         <span class="badge-dot"></span>
-        Pridružite se 300+ uspešnih kompanija
+        Usklađeno sa zakonom o arhiviranju 2026
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -32,9 +32,8 @@
       </h1>
 
       <p class="hero-subtitle">
-        Arhivix čuva, štiti i organizuje celokupnu dokumentaciju vaše firme<br class="hide-mobile" />
-        uz pomoć veštačke inteligencije. Elektronske fakture, otpremnice,<br class="hide-mobile" />
-        arhivska knjiga. Sve na jednom mestu, potpuno usklađeno sa zakonom.
+        Fakture, otpremnice, arhivska knjiga. Sve na jednom mestu,<br class="hide-mobile" />
+        zaštićeno i organizovano uz pomoć veštačke inteligencije.
       </p>
 
       <div class="hero-cta">
@@ -44,7 +43,7 @@
             <path d="M3.75 9H14.25M14.25 9L9.75 4.5M14.25 9L9.75 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <span class="hero-cta-note">Više od 300 zadovoljnih firmi</span>
+        <span class="hero-cta-note">Bez obaveza, otkažite kad god želite</span>
       </div>
 
       <div class="hero-image-wrapper">

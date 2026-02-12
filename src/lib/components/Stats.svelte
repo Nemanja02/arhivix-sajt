@@ -3,10 +3,10 @@
   import { scrollReveal } from '$lib/actions/scrollReveal.js';
 
   const stats = [
-    { value: '100%', label: 'Usaglašeno sa zakonom', prefix: '', suffix: '' },
-    { value: '2,800', label: 'Zadovoljnih korisnika', prefix: '+', suffix: '' },
-    { value: '300,000', label: 'Obrađenih faktura', prefix: '+', suffix: '' },
-    { value: '1,200', label: 'Ušteđenih sati', prefix: '+', suffix: '' }
+    { value: '47,000', label: 'Arhiviranih dokumenata', prefix: '+', suffix: '' },
+    { value: '99.9', label: 'Dostupnost sistema', prefix: '', suffix: '%' },
+    { value: '256', label: 'AES enkripcija (bit)', prefix: '', suffix: '' },
+    { value: '2', label: 'AWS regiona u Evropi', prefix: '', suffix: '' }
   ];
 </script>
 

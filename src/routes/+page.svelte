@@ -1,5 +1,6 @@
 <script>
   import Hero from '$lib/components/Hero.svelte';
+  import TrustBadges from '$lib/components/TrustBadges.svelte';
   import SecuritySection from '$lib/components/SecuritySection.svelte';
   import AISearch from '$lib/components/AISearch.svelte';
   import FeatureTabs from '$lib/components/FeatureTabs.svelte';
@@ -20,6 +21,7 @@
 </svelte:head>
 
 <Hero />
+<TrustBadges />
 <SecuritySection />
 <AISearch />
 <FeatureTabs />

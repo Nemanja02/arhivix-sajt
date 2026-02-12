@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <circle cx="12" cy="12" r="10" fill="#003399"/>
+  <defs>
+    <polygon id="s" points="0,-1.1 0.26,-0.36 1.05,-0.34 0.43,0.14 0.65,0.89 0,0.45 -0.65,0.89 -0.43,0.14 -1.05,-0.34 -0.26,-0.36" fill="#FFCC00"/>
+  </defs>
+  <use href="#s" x="12" y="5.5"/>
+  <use href="#s" x="15.25" y="5.87"/>
+  <use href="#s" x="17.63" y="8.75"/>
+  <use href="#s" x="18.5" y="12"/>
+  <use href="#s" x="17.63" y="15.25"/>
+  <use href="#s" x="15.25" y="18.13"/>
+  <use href="#s" x="12" y="18.5"/>
+  <use href="#s" x="8.75" y="18.13"/>
+  <use href="#s" x="6.37" y="15.25"/>
+  <use href="#s" x="5.5" y="12"/>
+  <use href="#s" x="6.37" y="8.75"/>
+  <use href="#s" x="8.75" y="5.87"/>
+</svg>

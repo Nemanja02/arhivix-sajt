@@ -23,7 +23,7 @@
           class="cta-illustration"
         />
         <h2>Prestanite da gubite vreme<br />na traženje dokumenata.</h2>
-        <p>Pridružite se preko 300 firmi koje su već prešle na pametniji način upravljanja dokumentacijom. Bez obaveza, bez kartice. 14 dana besplatno.</p>
+        <p>Pređite na pametniji način upravljanja dokumentacijom. Bez obaveza, bez kartice. 14 dana besplatno.</p>
         <a href="/register" class="btn btn-primary btn-large cta-btn">
           Započnite besplatno
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">

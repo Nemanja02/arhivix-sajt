@@ -1,62 +1,54 @@
 <script>
   import { scrollReveal } from '$lib/actions/scrollReveal.js';
 
-  let activeTab = 0;
-
-  const tabs = [
+  const features = [
     {
-      title: 'Kraj haosa sa papirima',
-      description: 'Sve fakture, otpremnice, ugovori i dokumenti na jednom mestu. Pretražujte ih slobodnim jezikom, pristupajte im sa bilo kog uređaja. Bez fascikli, bez nerviranja, bez gubljenja vremena.',
+      label: 'Centralna arhiva',
+      title: 'Svi dokumenti na jednom mestu, dostupni u sekundi',
+      description: 'Fakture, otpremnice, ugovori, rešenja. Sve organizovano u jednom sistemu, dostupno sa bilo kog uređaja. Pretražujte slobodnim jezikom umesto da kopate po fasciklama.',
       image: '/images/features/organizacija.png',
-      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>'
+      imageAlt: 'Arhivix organizacija dokumenata'
     },
     {
-      title: 'Elektronske fakture i otpremnice bez glavobolje',
-      description: 'Kreirajte, šaljite i upravljajte elektronskim fakturama i otpremnicama u par klikova. Automatsko prosleđivanje knjigovođi. Manje grešaka, brži proces, potpuna kontrola.',
+      label: 'E-fakture i otpremnice',
+      title: 'Kreirajte, šaljite i pratite elektronske dokumente u par klikova',
+      description: 'Usklađeno sa zakonom od prvog dana. Automatsko prosleđivanje knjigovođi, praćenje statusa, izveštaji. Manje ručnog posla, manje grešaka, potpuna kontrola.',
       image: '/images/features/digitalno.png',
-      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>'
+      imageAlt: 'Elektronske fakture i otpremnice'
     },
     {
-      title: 'Vaši podaci su samo vaši',
-      description: 'Enkripcija na svakom fajlu, skladištenje na dva AWS evropska regiona, granularna kontrola pristupa za svakog korisnika. Vaši dokumenti su bezbedniji nego u fizičkom sefu.',
+      label: 'Arhivska knjiga',
+      title: 'Automatski vođena arhivska knjiga, uvek spremna za inspekciju',
+      description: 'Sistem automatski generiše i ažurira arhivsku knjigu prema zakonskim zahtevima. Bez ručnog unosa, bez brige o rokovima. Uvek tačna, uvek dostupna.',
       image: '/images/features/sigurnost.png',
-      icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>'
+      imageAlt: 'Arhivska knjiga'
     }
   ];
 </script>
 
-<section class="features-section section" id="funkcije" use:scrollReveal>
-  <div class="container animate-on-scroll" use:scrollReveal>
-    <div class="features-header text-center">
+<section class="features-section section" id="funkcije">
+  <div class="container">
+    <div class="features-header text-center animate-on-scroll" use:scrollReveal>
       <span class="section-label">Ključne funkcije</span>
-      <h2 class="section-title">Sve što vam treba. Ništa što vam ne treba.</h2>
+      <h2 class="section-title">Jedna platforma za celokupnu dokumentaciju vaše firme</h2>
+      <p class="section-subtitle mx-auto">
+        Od prijema dokumenta do trajnog arhiviranja. Sve automatizovano, sve na jednom mestu.
+      </p>
     </div>
 
-    <div class="features-tabs">
-      <div class="tabs-nav">
-        {#each tabs as tab, i}
-          <button
-            class="tab-btn"
-            class:active={activeTab === i}
-            on:click={() => (activeTab = i)}
-          >
-            <span class="tab-icon">{@html tab.icon}</span>
-            <div class="tab-text">
-              <span class="tab-title">{tab.title}</span>
-              <span class="tab-desc">{tab.description}</span>
-            </div>
-            <div class="tab-progress" class:active={activeTab === i}></div>
-          </button>
-        {/each}
-      </div>
-
-      <div class="tabs-content">
-        {#each tabs as tab, i}
-          <div class="tab-panel" class:active={activeTab === i}>
-            <img src={tab.image} alt={tab.title} />
+    <div class="features-list">
+      {#each features as feature, i}
+        <div class="feature-row animate-on-scroll" class:reverse={i % 2 === 1} use:scrollReveal style="transition-delay: {i * 100}ms">
+          <div class="feature-text">
+            <span class="feature-label">{feature.label}</span>
+            <h3 class="feature-title">{feature.title}</h3>
+            <p class="feature-desc">{feature.description}</p>
           </div>
-        {/each}
-      </div>
+          <div class="feature-image-wrapper">
+            <img src={feature.image} alt={feature.imageAlt} class="feature-image" loading="lazy" />
+          </div>
+        </div>
+      {/each}
     </div>
   </div>
 </section>
@@ -67,158 +59,88 @@
   }
 
   .features-header {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
   }
 
-  .features-tabs {
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .feature-row {
     display: grid;
-    grid-template-columns: 380px 1fr;
-    gap: 2.5rem;
-    align-items: start;
-  }
-
-  .tabs-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .tab-btn {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.25rem;
-    border-radius: var(--radius-md);
-    text-align: left;
-    transition: all var(--transition-normal);
-    background: transparent;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid transparent;
-  }
-
-  .tab-btn:hover {
-    background: var(--color-bg-card);
-  }
-
-  .tab-btn.active {
-    background: var(--color-white);
-    border-color: var(--color-border);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .tab-icon {
-    width: 36px;
-    height: 36px;
-    display: flex;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
     align-items: center;
-    justify-content: center;
-    border-radius: var(--radius-sm);
-    background: rgba(37, 99, 235, 0.08);
-    color: var(--color-primary);
-    flex-shrink: 0;
-    margin-top: 2px;
-    transition: all var(--transition-normal);
   }
 
-  .tab-btn.active .tab-icon {
-    background: var(--color-primary);
-    color: white;
+  .feature-row.reverse {
+    direction: rtl;
   }
 
-  .tab-text {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
+  .feature-row.reverse > * {
+    direction: ltr;
   }
 
-  .tab-title {
-    font-weight: 700;
-    font-size: var(--font-size-base);
-    color: var(--color-text);
-  }
-
-  .tab-desc {
+  .feature-label {
+    display: inline-block;
     font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .feature-title {
+    font-size: clamp(1.5rem, 2.5vw, 1.75rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .feature-desc {
+    font-size: var(--font-size-base);
     color: var(--color-text-muted);
-    line-height: 1.5;
+    line-height: 1.7;
   }
 
-  .tab-progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px;
-    background: var(--color-primary);
-    width: 0;
-    transition: width 0.3s ease;
-  }
-
-  .tab-progress.active {
-    width: 100%;
-  }
-
-  .tabs-content {
-    position: relative;
-    border-radius: var(--radius-lg);
+  .feature-image-wrapper {
+    border-radius: var(--radius-xl);
     overflow: hidden;
+    border: 1px solid var(--color-border-light);
+    box-shadow: var(--shadow-lg);
     background: var(--color-bg-card);
-    min-height: 400px;
+    transition: all var(--transition-normal);
   }
 
-  .tab-panel {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    opacity: 0;
-    transform: scale(0.98);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    pointer-events: none;
+  .feature-image-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
   }
 
-  .tab-panel.active {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
-    position: relative;
-  }
-
-  .tab-panel img {
-    max-width: 100%;
-    max-height: 480px;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
-    object-fit: contain;
+  .feature-image {
+    width: 100%;
+    display: block;
   }
 
   @media (max-width: 900px) {
-    .features-tabs {
+    .feature-row,
+    .feature-row.reverse {
       grid-template-columns: 1fr;
+      gap: 2rem;
+      direction: ltr;
     }
 
-    .tabs-nav {
-      flex-direction: row;
-      overflow-x: auto;
-      gap: 0.5rem;
-      padding-bottom: 0.5rem;
-      -webkit-overflow-scrolling: touch;
+    .feature-text {
+      text-align: center;
     }
 
-    .tab-btn {
-      flex-direction: column;
-      min-width: 200px;
-      padding: 1rem;
-    }
-
-    .tab-desc {
-      display: none;
-    }
-
-    .tabs-content {
-      min-height: 300px;
+    .features-list {
+      gap: 3rem;
     }
   }
 </style>

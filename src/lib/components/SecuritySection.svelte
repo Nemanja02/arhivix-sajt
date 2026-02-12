@@ -44,8 +44,8 @@
 
 <style>
   .security-section {
-    padding: 5rem 0;
-    background: var(--color-bg-card);
+    padding: 5rem 0 6rem;
+    background: linear-gradient(180deg, var(--color-bg-card) 0%, var(--color-bg-card) 60%, var(--color-bg) 100%);
   }
 
   .security-header {
