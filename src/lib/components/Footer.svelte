@@ -1,11 +1,14 @@
 <script>
+  import { t, localePath } from '$lib/i18n';
+
+  export let locale = 'sr';
 </script>
 
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="/" class="footer-logo">
+        <a href={localePath(locale, '/')} class="footer-logo">
           <img
             src="/images/misc/logo.png"
             alt="Arhivix"
@@ -13,44 +16,44 @@
             height="28"
           />
         </a>
-        <p class="footer-tagline">Vaša dokumentacija na dohvat ruke</p>
+        <p class="footer-tagline">{t(locale, 'footer.tagline')}</p>
       </div>
 
       <div class="footer-links-group">
-        <h4>Knjigovođe</h4>
+        <h4>{t(locale, 'footer.resources')}</h4>
         <ul>
-          <li><a href="/">Za knjigovođe</a></li>
-          <li><a href="/">Za agencije</a></li>
-          <li><a href="/">Postani partner</a></li>
-          <li><a href="/blog">Edukacije</a></li>
+          <li><a href={localePath(locale, '/blog/elektronske-fakture')}>{t(locale, 'footer.efakture')}</a></li>
+          <li><a href={localePath(locale, '/blog/elektronske-otpremnice')}>{t(locale, 'footer.eotpremnice')}</a></li>
+          <li><a href={localePath(locale, '/blog/arhivska-knjiga')}>{t(locale, 'footer.arhivska_knjiga')}</a></li>
+          <li><a href={localePath(locale, '/blog')}>{t(locale, 'footer.blog')}</a></li>
         </ul>
       </div>
 
       <div class="footer-links-group">
-        <h4>Podrška</h4>
+        <h4>{t(locale, 'footer.support')}</h4>
         <ul>
-          <li><a href="/">Kontakt</a></li>
-          <li><a href="/blog">Video materijali</a></li>
-          <li><a href="/">Tehnička podrška</a></li>
-          <li><a href="/#pitanja">Pitanja</a></li>
-          <li><a href="/#cenovnik">Paketi</a></li>
+          <li><a href={localePath(locale, '/')}>{t(locale, 'footer.contact')}</a></li>
+          <li><a href={localePath(locale, '/blog')}>{t(locale, 'footer.videos')}</a></li>
+          <li><a href={localePath(locale, '/')}>{t(locale, 'footer.tech_support')}</a></li>
+          <li><a href={localePath(locale, '/') + '#pitanja'}>{t(locale, 'footer.faq')}</a></li>
+          <li><a href={localePath(locale, '/') + '#cenovnik'}>{t(locale, 'footer.packages')}</a></li>
         </ul>
       </div>
 
       <div class="footer-links-group">
-        <h4>Pravilnici</h4>
+        <h4>{t(locale, 'footer.legal')}</h4>
         <ul>
-          <li><a href="/legal/politika-privatnosti">Politika privatnosti</a></li>
-          <li><a href="/legal/uslovi-koriscenja">Uslovi korišćenja</a></li>
-          <li><a href="/legal/kolacici">Kolačići</a></li>
-          <li><a href="/legal/javni-pravilnici">Javni Pravilnici</a></li>
-          <li><a href="/legal/licenca">Licenca softvera</a></li>
+          <li><a href={localePath(locale, '/legal/politika-privatnosti')}>{t(locale, 'footer.privacy')}</a></li>
+          <li><a href={localePath(locale, '/legal/uslovi-koriscenja')}>{t(locale, 'footer.terms')}</a></li>
+          <li><a href={localePath(locale, '/legal/kolacici')}>{t(locale, 'footer.cookies')}</a></li>
+          <li><a href={localePath(locale, '/legal/javni-pravilnici')}>{t(locale, 'footer.public_rules')}</a></li>
+          <li><a href={localePath(locale, '/legal/licenca')}>{t(locale, 'footer.license')}</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>© 2025 Notix DOO Beograd | MB: 21993310 | PIB: 114240716</p>
+      <p>&copy; 2026 Notix DOO Beograd | MB: 21993310 | PIB: 114240716</p>
     </div>
   </div>
 </footer>

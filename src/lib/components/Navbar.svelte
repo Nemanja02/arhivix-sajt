@@ -1,11 +1,16 @@
 <script>
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
+  import { t, localePath } from '$lib/i18n';
+  import LanguageSwitcher from './LanguageSwitcher.svelte';
+
+  export let locale = 'sr';
 
   let scrolled = false;
   let mobileOpen = false;
 
-  $: isHome = $page.url.pathname === '/';
+  $: pathname = $page.url.pathname;
+  $: isHome = pathname === '/' || pathname === '/en' || pathname === '/en/' || pathname === '/de' || pathname === '/de/';
   $: forceScrolled = !isHome;
 
   onMount(() => {
@@ -23,7 +28,7 @@
 
 <nav class="navbar" class:scrolled={scrolled || forceScrolled}>
   <div class="nav-container">
-    <a href="/" class="nav-logo">
+    <a href={localePath(locale, '/')} class="nav-logo">
       <img
         src="/images/misc/logo.png"
         alt="Arhivix"
@@ -33,15 +38,16 @@
     </a>
 
     <div class="nav-links">
-      <a href="/">Početna</a>
-      <a href="/#funkcije">Funkcionalnosti</a>
-      <a href="/#cenovnik">Cenovnik</a>
+      <a href={localePath(locale, '/')}>{t(locale, 'nav.home')}</a>
+      <a href={localePath(locale, '/') + '#funkcije'}>{t(locale, 'nav.features')}</a>
+      <a href={localePath(locale, '/') + '#cenovnik'}>{t(locale, 'nav.pricing')}</a>
     </div>
 
     <div class="nav-actions">
-      <a href="https://updater.arhivix.com/download_arhivix" class="btn btn-outline btn-nav">Preuzmi</a>
-      <a href="/register" class="btn btn-primary btn-nav">
-        Isprobajte besplatno 14 dana
+      <LanguageSwitcher {locale} />
+      <a href="https://updater.arhivix.com/download_arhivix" class="btn btn-outline btn-nav" rel="noopener" target="_blank">{t(locale, 'nav.download')}</a>
+      <a href={localePath(locale, '/register')} class="btn btn-primary btn-nav">
+        {t(locale, 'nav.cta')}
       </a>
     </div>
 
@@ -62,12 +68,15 @@
     <div class="mobile-overlay" on:click={closeMobile} on:keydown={closeMobile}></div>
     <div class="mobile-menu" class:open={mobileOpen}>
       <div class="mobile-menu-inner">
-        <a href="/" on:click={closeMobile}>Početna</a>
-        <a href="/#funkcije" on:click={closeMobile}>Funkcionalnosti</a>
-        <a href="/#cenovnik" on:click={closeMobile}>Cenovnik</a>
+        <a href={localePath(locale, '/')} on:click={closeMobile}>{t(locale, 'nav.home')}</a>
+        <a href={localePath(locale, '/') + '#funkcije'} on:click={closeMobile}>{t(locale, 'nav.features')}</a>
+        <a href={localePath(locale, '/') + '#cenovnik'} on:click={closeMobile}>{t(locale, 'nav.pricing')}</a>
+        <div class="mobile-lang">
+          <LanguageSwitcher {locale} />
+        </div>
         <div class="mobile-actions">
-          <a href="https://updater.arhivix.com/download_arhivix" class="btn btn-outline btn-full">Preuzmi</a>
-          <a href="/register" class="btn btn-primary btn-full">Isprobajte besplatno 14 dana</a>
+          <a href="https://updater.arhivix.com/download_arhivix" class="btn btn-outline btn-full" rel="noopener" target="_blank">{t(locale, 'nav.download')}</a>
+          <a href={localePath(locale, '/register')} class="btn btn-primary btn-full">{t(locale, 'nav.cta')}</a>
         </div>
       </div>
     </div>
@@ -224,6 +233,10 @@
     font-weight: 500;
     padding: 0.5rem 0;
     border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .mobile-lang {
+    padding: 0.5rem 0;
   }
 
   .mobile-actions {

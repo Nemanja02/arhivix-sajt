@@ -1,43 +1,49 @@
 <script>
+  import { getContext } from 'svelte';
   import { scrollReveal } from '$lib/actions/scrollReveal.js';
-  import { slide } from 'svelte/transition';
+  import { t } from '$lib/i18n';
+
+  const localeStore = getContext('locale');
+  $: locale = $localeStore;
 
   let openIndex = 0;
 
-  const faqs = [
-    {
-      q: 'Gde se čuvaju moji dokumenti?',
-      a: 'Vaši dokumenti se čuvaju na Amazon Web Services (AWS) cloud infrastrukturi. Konkretno, koristimo dva odvojena S3 skladišta u dva različita evropska regiona. To znači da čak i u slučaju tehničkih problema u jednom regionu, vaši dokumenti su i dalje bezbedni i dostupni u drugom. Sve je automatski enkriptovano.'
-    },
-    {
-      q: 'Da li neko može da pristupi mojim fajlovima bez mog znanja?',
-      a: 'Ne. Svi fajlovi su enkriptovani i ne mogu se otvoriti bez posebnog ključa koji je vezan za vaš nalog. Čak ni naš tim nema pristup vašim dokumentima. Za svakog korisnika u vašoj firmi možete podesiti individualne dozvole: ko može da vidi, menja ili preuzima svaki dokument.'
-    },
-    {
-      q: 'Šta je veštačka inteligencija u Arhivix-u?',
-      a: 'Arhivix automatski indeksira svaki dokument koji unesete. Naš AI sistem čita i razume sadržaj dokumenata, pa ih možete pretraživati prirodnim jezikom. Na primer, možete ukucati "Pronađi mi račun za telefon iz aprila" i sistem će pronaći tačan dokument. Bez ručnog pretraživanja, bez gubljenja vremena.'
-    },
-    {
-      q: 'Da li je sistem usklađen sa novim zakonom o elektronskim otpremnicama?',
-      a: 'Da, u potpunosti. Od 1. januara 2026. elektronske otpremnice su zakonska obaveza. Arhivix podržava kreiranje, slanje, prijem i arhiviranje elektronskih otpremnica i prijemnica u skladu sa svim propisima.'
-    },
-    {
-      q: 'Šta ako nisam tehnički osoba? Da li je komplikovano za korišćenje?',
-      a: 'Uopšte ne. Arhivix je dizajniran da bude jednostavan za svakoga. Dokument se arhivira u tri koraka, pretraga funkcioniše kao razgovor sa asistentom, a ceo sistem je intuitivan. Ako vam ipak zatreba pomoć, tu smo 24/7.'
-    }
+  $: faqs = [
+    { q: t(locale, 'faq.q1'), a: t(locale, 'faq.a1') },
+    { q: t(locale, 'faq.q2'), a: t(locale, 'faq.a2') },
+    { q: t(locale, 'faq.q3'), a: t(locale, 'faq.a3') },
+    { q: t(locale, 'faq.q4'), a: t(locale, 'faq.a4') },
+    { q: t(locale, 'faq.q5'), a: t(locale, 'faq.a5') }
   ];
+
+  $: faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.a
+      }
+    }))
+  };
 
   function toggle(i) {
     openIndex = openIndex === i ? -1 : i;
   }
 </script>
 
+<svelte:head>
+  {@html '<script type="application/ld+json">' + JSON.stringify(faqJsonLd) + '</script>'}
+</svelte:head>
+
 <section class="faq-section section" id="pitanja">
   <div class="container">
     <div class="faq-header text-center animate-on-scroll" use:scrollReveal>
       <span class="section-label">FAQ</span>
-      <h2 class="section-title">Često postavljena pitanja</h2>
-      <p class="section-subtitle mx-auto">Pronađite odgovore na najčešća pitanja</p>
+      <h2 class="section-title">{t(locale, 'faq.title')}</h2>
+      <p class="section-subtitle mx-auto">{t(locale, 'faq.subtitle')}</p>
     </div>
 
     <div class="faq-list">
@@ -51,11 +57,9 @@
               </svg>
             </div>
           </button>
-          {#if openIndex === i}
-            <div class="faq-answer" transition:slide={{ duration: 300 }}>
-              <p>{faq.a}</p>
-            </div>
-          {/if}
+          <div class="faq-answer" class:open={openIndex === i}>
+            <p>{faq.a}</p>
+          </div>
         </div>
       {/each}
     </div>
@@ -119,6 +123,14 @@
   }
 
   .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 1.5rem;
+  }
+
+  .faq-answer.open {
+    max-height: 300px;
     padding: 0 1.5rem 1.25rem;
   }
 

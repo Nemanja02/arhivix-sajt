@@ -1,6 +1,26 @@
 <script>
+  import { page } from '$app/stores';
+  import { SITE_URL } from '$lib/config.js';
+
   export let items = [];
+
+  $: breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.label,
+      item: item.href
+        ? `${SITE_URL}${item.href}`
+        : `${SITE_URL}${$page.url.pathname}`
+    }))
+  };
 </script>
+
+<svelte:head>
+  {@html '<script type="application/ld+json">' + JSON.stringify(breadcrumbJsonLd) + '</script>'}
+</svelte:head>
 
 <nav class="breadcrumbs" aria-label="Navigacija">
   {#each items as item, i}

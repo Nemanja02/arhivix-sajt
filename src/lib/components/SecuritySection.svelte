@@ -1,32 +1,31 @@
 <script>
+  import { getContext } from 'svelte';
   import { scrollReveal } from '$lib/actions/scrollReveal.js';
+  import { t } from '$lib/i18n';
 
-  const cards = [
-    {
-      icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
-      title: 'Dupla zaštita na dva evropska servera',
-      text: 'Vaši fajlovi se čuvaju na cloud sistemu koji koristi Amazon Web Services (AWS), svetski lider u infrastrukturi. Svaki dokument se automatski replicira na dva odvojena S3 skladišta u dva različita evropska regiona. Čak i da jedan server prestane sa radom, vaši dokumenti su i dalje tu, sigurni i dostupni.'
-    },
-    {
-      icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/><circle cx="12" cy="16" r="1"/></svg>',
-      title: 'Potpuna enkripcija, bez izuzetka',
-      text: 'Svaki fajl koji otpremite se automatski enkriptuje. Bez vašeg naloga i posebnog ključa, niko ne može da ih vidi, pa ni mi. Vaši podaci nisu dostupni nikome osim vama i korisnicima kojima vi eksplicitno dozvolite pristup.'
-    },
-    {
-      icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>',
-      title: 'Vi kontrolišete ko šta vidi',
-      text: 'Za svakog člana tima možete da podesite individualne dozvole: ko može da vidi, ko može da menja, ko može da preuzme. Sve je pod vašom kontrolom, za svaki dokument pojedinačno. Nema iznenađenja, nema nepotrebnog pristupa.'
-    }
+  const localeStore = getContext('locale');
+  $: locale = $localeStore;
+
+  const icons = [
+    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/><circle cx="12" cy="16" r="1"/></svg>',
+    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>'
+  ];
+
+  $: cards = [
+    { icon: icons[0], title: t(locale, 'security.card1_title'), text: t(locale, 'security.card1_text') },
+    { icon: icons[1], title: t(locale, 'security.card2_title'), text: t(locale, 'security.card2_text') },
+    { icon: icons[2], title: t(locale, 'security.card3_title'), text: t(locale, 'security.card3_text') }
   ];
 </script>
 
 <section class="security-section section">
   <div class="container">
     <div class="security-header text-center animate-on-scroll" use:scrollReveal>
-      <span class="section-label">Bezbednost na prvom mestu</span>
-      <h2 class="section-title">Vaši dokumenti su zaštićeni kao u trezoru. Samo vi imate ključ.</h2>
+      <span class="section-label">{t(locale, 'security.label')}</span>
+      <h2 class="section-title">{t(locale, 'security.title')}</h2>
       <p class="section-subtitle mx-auto">
-        Znamo da vam poveravanje dokumenata trećem sistemu izaziva nelagodu. Zato smo sigurnost postavili kao temelj svega što radimo.
+        {t(locale, 'security.subtitle')}
       </p>
     </div>
 

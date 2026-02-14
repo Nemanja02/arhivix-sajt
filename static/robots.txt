@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arhivix.com/sitemap.xml

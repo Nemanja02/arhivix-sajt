@@ -1,39 +1,26 @@
 <script>
+  import { getContext } from 'svelte';
   import { scrollReveal } from '$lib/actions/scrollReveal.js';
+  import { getAllPosts } from '$lib/data/blogPosts/index.js';
+  import { t, localePath } from '$lib/i18n';
 
-  const posts = [
-    {
-      title: 'Elektronske otpremnice u Srbiji: šta znači novi zakon i kako utiče na firme od 2026. godine',
-      excerpt: 'Jasno objašnjeno šta su elektronske otpremnice, koje su nove obaveze od 2026, ko ih mora slati i šta to znači za firme, prevoznike i građane.',
-      image: '/images/blog/elektronske-otpremnice.jpg',
-      link: '/blog/elektronske-otpremnice'
-    },
-    {
-      title: 'Unos Dokumentacije u Arhivsku Knjigu',
-      excerpt: 'Arhivska knjiga predstavlja ključni dokument za praćenje i arhiviranje poslovne dokumentacije.',
-      image: '/images/blog/arhivska-knjiga.jpg',
-      link: '/blog/arhivska-knjiga'
-    },
-    {
-      title: 'Elektronsko Arhiviranje',
-      excerpt: 'Elektronsko arhiviranje dokumenata postaje sve važnije za poslovanje, posebno zbog novih zakonskih obaveza.',
-      image: '/images/blog/elektronsko-arhiviranje.jpg',
-      link: '/blog/elektronsko-arhiviranje'
-    }
-  ];
+  const localeStore = getContext('locale');
+  $: locale = $localeStore;
+
+  $: posts = getAllPosts(locale).slice(0, 3);
 </script>
 
 <section class="blog-section section">
   <div class="container">
     <div class="blog-header text-center animate-on-scroll" use:scrollReveal>
-      <span class="section-label">Novosti</span>
-      <h2 class="section-title">Naši najnoviji članci i saveti</h2>
+      <span class="section-label">{t(locale, 'blog.label')}</span>
+      <h2 class="section-title">{t(locale, 'blog.title')}</h2>
     </div>
 
     <div class="blog-grid">
       {#each posts as post, i}
         <a
-          href={post.link}
+          href={localePath(locale, `/blog/${post.slug}`)}
           class="blog-card animate-on-scroll"
           use:scrollReveal
           style="transition-delay: {i * 100}ms"
@@ -45,7 +32,7 @@
             <h3>{post.title}</h3>
             <p>{post.excerpt}</p>
             <span class="blog-read-more">
-              Pročitaj više
+              {t(locale, 'blog.read_more')}
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>

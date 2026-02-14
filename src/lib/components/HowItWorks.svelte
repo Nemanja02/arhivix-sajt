@@ -1,22 +1,27 @@
 <script>
+  import { getContext } from 'svelte';
   import { scrollReveal } from '$lib/actions/scrollReveal.js';
+  import { t } from '$lib/i18n';
+
+  const localeStore = getContext('locale');
+  $: locale = $localeStore;
 
   let activeStep = 0;
 
-  const steps = [
+  $: steps = [
     {
       num: 1,
-      title: 'Unesite osnovne podatke',
+      title: t(locale, 'howItWorks.step1'),
       image: '/images/features/howitworks-1.png'
     },
     {
       num: 2,
-      title: 'Izaberite tip i lokaciju',
+      title: t(locale, 'howItWorks.step2'),
       image: '/images/features/howitworks-2.png'
     },
     {
       num: 3,
-      title: 'Potpišite i arhivirajte',
+      title: t(locale, 'howItWorks.step3'),
       image: '/images/features/howitworks-3.png'
     }
   ];
@@ -25,10 +30,10 @@
 <section class="hiw-section section">
   <div class="container">
     <div class="hiw-header text-center animate-on-scroll" use:scrollReveal>
-      <span class="section-label">Kako funkcioniše sistem</span>
-      <h2 class="section-title">Jednostavan proces arhiviranja</h2>
+      <span class="section-label">{t(locale, 'howItWorks.label')}</span>
+      <h2 class="section-title">{t(locale, 'howItWorks.title')}</h2>
       <p class="section-subtitle mx-auto">
-        Arhivirajte dokument u tri jednostavna koraka i završite sve za par sekundi.
+        {t(locale, 'howItWorks.subtitle')}
       </p>
     </div>
 
@@ -52,7 +57,7 @@
       <div class="hiw-image-wrapper">
         {#each steps as step, i}
           <div class="hiw-image" class:active={activeStep === i}>
-            <img src={step.image} alt={step.title} />
+            <img src={step.image} alt={step.title} width="500" height="500" loading="lazy" />
           </div>
         {/each}
       </div>

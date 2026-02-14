@@ -1,28 +1,17 @@
 <script>
+  import { getContext } from 'svelte';
   import { scrollReveal } from '$lib/actions/scrollReveal.js';
+  import { t } from '$lib/i18n';
 
-  const badges = [
-    {
-      img: '/images/badges/shield-lock.svg',
-      label: 'AES-256 enkripcija'
-    },
-    {
-      img: '/images/badges/uptime.svg',
-      label: '99.9% dostupnost'
-    },
-    {
-      img: '/images/badges/aws-logo.svg',
-      label: 'Pokreće AWS',
-      wide: true
-    },
-    {
-      img: '/images/badges/eu-flag.svg',
-      label: 'Podaci u EU'
-    },
-    {
-      img: '/images/badges/compliance.svg',
-      label: 'Usklađeno sa zakonom 2026'
-    }
+  const localeStore = getContext('locale');
+  $: locale = $localeStore;
+
+  $: badges = [
+    { img: '/images/badges/shield-lock.svg', label: t(locale, 'trust.encryption') },
+    { img: '/images/badges/uptime.svg', label: t(locale, 'trust.uptime') },
+    { img: '/images/badges/aws-logo.svg', label: t(locale, 'trust.aws'), wide: true },
+    { img: '/images/badges/eu-flag.svg', label: t(locale, 'trust.eu') },
+    { img: '/images/badges/compliance.svg', label: t(locale, 'trust.compliance') }
   ];
 </script>
 

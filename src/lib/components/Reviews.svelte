@@ -1,22 +1,39 @@
 <script>
+  import { getContext } from 'svelte';
   import { scrollReveal } from '$lib/actions/scrollReveal.js';
+  import { t } from '$lib/i18n';
 
-  const row1 = [
-    { quote: 'Dokumenti nam stižu odmah, knjigovođa više ništa ne čeka. Sve radi glatko.', name: 'Marko Ilić', role: 'administracija — Market Lotos', img: '/images/reviews/marko-ilic.jpeg' },
-    { quote: 'Pre smo stalno gubili papire, sad sve nađemo za par sekundi. Mnogo lakše radimo.', name: 'Milan Petrović', role: 'magacioner — Transport M&P', img: '/images/reviews/milan-petrovic.jpeg' },
-    { quote: 'Pregled faktura nam je konačno jasan. Znam tačno šta je poslato i šta još stoji.', name: 'Nikola Radojević', role: 'operativa — InvestPro Group', img: '/images/reviews/nikola-radojevic.jpeg' },
-    { quote: 'Elektronski potpis nam je spas. Ne jurimo više ljude po kancelarijama.', name: 'Tamara Nikšić', role: 'HR — SmartLab Solutions', img: '/images/reviews/tamara-niksic.jpeg' },
+  const localeStore = getContext('locale');
+  $: locale = $localeStore;
+
+  const reviewImages = [
+    '/images/reviews/marko-ilic.jpeg',
+    '/images/reviews/milan-petrovic.jpeg',
+    '/images/reviews/nikola-radojevic.jpeg',
+    '/images/reviews/tamara-niksic.jpeg',
+    '/images/reviews/aleksandra-stanic.jpeg',
+    '/images/reviews/vladimir-simic.jpeg',
+    '/images/reviews/dejan-radulovic.jpeg',
+    '/images/reviews/stojan-jovanov.jpeg',
+    '/images/reviews/jelena-kovac.jpeg'
   ];
 
-  const row2 = [
-    { quote: 'Upload, klik i gotovo. Nema više trčanja za papirima kroz firmu.', name: 'Aleksandra Stanić', role: 'prodaja — SoftPoint Technologies', img: '/images/reviews/aleksandra-stanic.jpeg' },
-    { quote: 'Najzad red u dokumentima. Sve pronađem bez nerviranja i gubljenja vremena.', name: 'Vladimir Simić', role: 'tehnička podrška — TechServ', img: '/images/reviews/vladimir-simic.jpeg' },
-    { quote: 'Od kad koristimo ovaj sistem, nema kašnjenja ni zastoja. Radi baš kako treba.', name: 'Dejan Radulović', role: 'vozač — CargoLine Express', img: '/images/reviews/dejan-radulovic.jpeg' },
-    { quote: 'Radimo brže, urednije i nema više grešaka sa dokumentima. Super stvar.', name: 'Stojan Jovanov', role: 'koordinacija — EuroTransport', img: '/images/reviews/stojan-jovanov.jpeg' },
+  $: row1 = [
+    { quote: t(locale, 'reviews.r1'), name: t(locale, 'reviews.r1_name'), role: t(locale, 'reviews.r1_role'), img: reviewImages[0] },
+    { quote: t(locale, 'reviews.r2'), name: t(locale, 'reviews.r2_name'), role: t(locale, 'reviews.r2_role'), img: reviewImages[1] },
+    { quote: t(locale, 'reviews.r3'), name: t(locale, 'reviews.r3_name'), role: t(locale, 'reviews.r3_role'), img: reviewImages[2] },
+    { quote: t(locale, 'reviews.r4'), name: t(locale, 'reviews.r4_name'), role: t(locale, 'reviews.r4_role'), img: reviewImages[3] },
   ];
 
-  const row3 = [
-    { quote: 'Dokumenti nam stižu odmah, knjigovođa više ništa ne čeka. Sve radi glatko.', name: 'Jelena Kovač', role: 'vođa smene — LogiRent', img: '/images/reviews/jelena-kovac.jpeg' },
+  $: row2 = [
+    { quote: t(locale, 'reviews.r5'), name: t(locale, 'reviews.r5_name'), role: t(locale, 'reviews.r5_role'), img: reviewImages[4] },
+    { quote: t(locale, 'reviews.r6'), name: t(locale, 'reviews.r6_name'), role: t(locale, 'reviews.r6_role'), img: reviewImages[5] },
+    { quote: t(locale, 'reviews.r7'), name: t(locale, 'reviews.r7_name'), role: t(locale, 'reviews.r7_role'), img: reviewImages[6] },
+    { quote: t(locale, 'reviews.r8'), name: t(locale, 'reviews.r8_name'), role: t(locale, 'reviews.r8_role'), img: reviewImages[7] },
+  ];
+
+  $: row3 = [
+    { quote: t(locale, 'reviews.r9'), name: t(locale, 'reviews.r9_name'), role: t(locale, 'reviews.r9_role'), img: reviewImages[8] },
     ...row1.slice(1),
   ];
 </script>
@@ -24,8 +41,8 @@
 <section class="reviews-section section">
   <div class="container">
     <div class="reviews-header text-center animate-on-scroll" use:scrollReveal>
-      <span class="section-label">Iskustva naših korisnika</span>
-      <h2 class="section-title">Koristi nas preko 300<br />zadovoljnih kompanija</h2>
+      <span class="section-label">{t(locale, 'reviews.label')}</span>
+      <h2 class="section-title">{@html t(locale, 'reviews.title')}</h2>
       <div class="reviews-rating">
         <div class="stars">
           {#each Array(5) as _}
@@ -34,13 +51,12 @@
             </svg>
           {/each}
         </div>
-        <span class="rating-text">4.9 od preko 400 korisnika</span>
+        <span class="rating-text">{t(locale, 'reviews.rating')}</span>
       </div>
     </div>
   </div>
 
   <div class="marquee-area">
-    <!-- Row 1: scrolls left -->
     <div class="marquee-track">
       <div class="marquee-row marquee-left">
         {#each [...row1, ...row1] as review}
@@ -58,7 +74,6 @@
       </div>
     </div>
 
-    <!-- Row 2: scrolls right -->
     <div class="marquee-track">
       <div class="marquee-row marquee-right">
         {#each [...row2, ...row2] as review}
@@ -76,7 +91,6 @@
       </div>
     </div>
 
-    <!-- Row 3: scrolls left -->
     <div class="marquee-track">
       <div class="marquee-row marquee-left-slow">
         {#each [...row3, ...row3] as review}

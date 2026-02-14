@@ -1,90 +1,74 @@
 <script>
+  import { getContext } from 'svelte';
   import { scrollReveal } from '$lib/actions/scrollReveal.js';
+  import { t } from '$lib/i18n';
+
+  const localeStore = getContext('locale');
+  $: locale = $localeStore;
 </script>
 
 <section class="feature-cards-section section">
   <div class="container">
     <div class="fc-header text-center animate-on-scroll" use:scrollReveal>
-      <span class="section-label">Napredne funkcije za modernu digitalnu kancelariju</span>
-      <h2 class="section-title">Sve što vam treba za bržu<br />i uredniju dokumentaciju</h2>
+      <span class="section-label">{t(locale, 'featureCards.label')}</span>
+      <h2 class="section-title">{@html t(locale, 'featureCards.title')}</h2>
       <p class="section-subtitle mx-auto">
-        Digitalizujte fakture, otpremnice i arhivu na jednom mestu i olakšajte saradnju sa timom i knjigovođom.
+        {t(locale, 'featureCards.subtitle')}
       </p>
     </div>
 
     <div class="fc-grid">
-      <!-- Card 1: Invoice overview -->
       <div class="fc-card fc-card-half animate-on-scroll" use:scrollReveal>
         <div class="fc-card-img">
-          <img
-            src="/images/features/card-archive.png"
-            alt="Pregled faktura"
-          />
+          <img src="/images/features/card-archive.png" alt={t(locale, 'featureCards.card1_title')} width="600" height="400" loading="lazy" />
         </div>
         <div class="fc-card-body">
-          <h3>Pregled faktura na jednom mestu</h3>
-          <p>Brzo vidiš sve fakture sa statusom, cenom i tipom, kao i ko je kreirao i odobrio dokument. Ušteda vremena i potpuna kontrola nad finansijskim tokom.</p>
+          <h3>{t(locale, 'featureCards.card1_title')}</h3>
+          <p>{t(locale, 'featureCards.card1_desc')}</p>
         </div>
       </div>
 
-      <!-- Card 2: Recent docs -->
       <div class="fc-card fc-card-half animate-on-scroll" use:scrollReveal style="transition-delay: 100ms">
         <div class="fc-card-img">
-          <img
-            src="/images/features/card-invoices.png"
-            alt="Nedavni dokumenti"
-          />
+          <img src="/images/features/card-invoices.png" alt={t(locale, 'featureCards.card2_title')} width="600" height="400" loading="lazy" />
         </div>
         <div class="fc-card-body">
-          <h3>Nedavni dokumenti i aktivnosti</h3>
-          <p>Sve što je skoro arhivirano prikazano je pregledno – ko je dodao dokument, kojoj grupi pripada i kada je unet.</p>
+          <h3>{t(locale, 'featureCards.card2_title')}</h3>
+          <p>{t(locale, 'featureCards.card2_desc')}</p>
         </div>
       </div>
 
-      <!-- Testimonial -->
       <div class="fc-testimonial animate-on-scroll" use:scrollReveal>
         <div class="fc-quote-mark">"</div>
         <blockquote>
-          Ovaj sistem nam je konačno rešio haos sa papirima. Svi dokumenti, fakture i otpremnice su pregledni, deljenje sa klijentima je momentalno, a knjigovođa ima sve na vreme. Osećamo stvarno olakšanje u svakodnevnom radu.
+          {t(locale, 'featureCards.testimonial')}
         </blockquote>
         <div class="fc-author">
-          <img
-            src="/images/features/card-stamp.png"
-            alt="Marko Jovanović"
-            class="fc-author-img"
-          />
+          <img src="/images/features/card-stamp.png" alt={t(locale, 'featureCards.testimonial_name')} class="fc-author-img" />
           <div>
-            <div class="fc-author-name">Marko Jovanović</div>
-            <div class="fc-author-role">Direktor operacija, MJ Solutions</div>
+            <div class="fc-author-name">{t(locale, 'featureCards.testimonial_name')}</div>
+            <div class="fc-author-role">{t(locale, 'featureCards.testimonial_role')}</div>
           </div>
         </div>
       </div>
 
-      <!-- Card 3: e-signature -->
       <div class="fc-card fc-card-half animate-on-scroll" use:scrollReveal>
         <div class="fc-card-img">
-          <img
-            src="/images/features/card-dashboard.png"
-            alt="e-potpis"
-          />
+          <img src="/images/features/card-dashboard.png" alt={t(locale, 'featureCards.card3_title')} width="600" height="400" loading="lazy" />
         </div>
         <div class="fc-card-body">
-          <h3>Brzo arhiviranje i e-potpis</h3>
-          <p>Dodaj ili skeniraj dokument u par sekundi, a potom ga potpiši elektronski. Sve ide brzo i bez komplikacija.</p>
+          <h3>{t(locale, 'featureCards.card3_title')}</h3>
+          <p>{t(locale, 'featureCards.card3_desc')}</p>
         </div>
       </div>
 
-      <!-- Card 4: Team management -->
       <div class="fc-card fc-card-half animate-on-scroll" use:scrollReveal style="transition-delay: 100ms">
         <div class="fc-card-img">
-          <img
-            src="/images/features/card-otpremnice.png"
-            alt="Upravljanje timom"
-          />
+          <img src="/images/features/card-otpremnice.png" alt={t(locale, 'featureCards.card4_title')} width="600" height="400" loading="lazy" />
         </div>
         <div class="fc-card-body">
-          <h3>Upravljanje timom i pristupima</h3>
-          <p>Jednostavno dodajte korisnike, dodelite uloge i kontrolišite dozvole. Sve aktivnosti su pregledne i uvek pod vašom kontrolom.</p>
+          <h3>{t(locale, 'featureCards.card4_title')}</h3>
+          <p>{t(locale, 'featureCards.card4_desc')}</p>
         </div>
       </div>
     </div>

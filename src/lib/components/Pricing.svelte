@@ -1,7 +1,11 @@
 <script>
+  import { getContext } from 'svelte';
   import { scrollReveal } from '$lib/actions/scrollReveal.js';
-
+  import { t, localePath } from '$lib/i18n';
   import { tick } from 'svelte';
+
+  const localeStore = getContext('locale');
+  $: locale = $localeStore;
 
   let isYearly = true;
   let toggleBtns = [];
@@ -20,54 +24,56 @@
 
   $: isYearly, updateIndicator();
 
-  const plans = [
+  $: plans = [
     {
       name: 'Basic',
-      desc: 'Za male firme koje žele urednu digitalnu arhivu i osnovne funkcije bez komplikacija.',
+      desc: t(locale, 'pricing.basic_desc'),
       monthly: 3000,
       yearly: 2600,
       features: [
-        { text: 'Do 5 korisnika', ai: false },
-        { text: '1 radni prostor', ai: false },
-        { text: '100 arhiviranih dokumenata mesečno', ai: false },
-        { text: '50 vremenskih žigova mesečno', ai: false },
-        { text: 'Automatsko arhiviranje', ai: false }
+        { text: t(locale, 'pricing.f_users_5'), ai: false },
+        { text: t(locale, 'pricing.f_workspace_1'), ai: false },
+        { text: t(locale, 'pricing.f_docs_100'), ai: false },
+        { text: t(locale, 'pricing.f_stamps_50'), ai: false },
+        { text: t(locale, 'pricing.f_auto'), ai: false }
       ],
       popular: false
     },
     {
       name: 'Premium',
-      desc: 'Za preduzeća sa većim obimom dokumenata i potrebom za bržim, fleksibilnijim radom.',
+      desc: t(locale, 'pricing.premium_desc'),
       monthly: 4800,
       yearly: 4100,
       features: [
-        { text: 'Do 10 korisnika', ai: false },
-        { text: '3 radna prostora', ai: false },
-        { text: '300 arhiviranih dokumenata mesečno', ai: false },
-        { text: '150 vremenskih žigova mesečno', ai: false },
-        { text: 'Automatsko arhiviranje', ai: false }
+        { text: t(locale, 'pricing.f_users_10'), ai: false },
+        { text: t(locale, 'pricing.f_workspace_3'), ai: false },
+        { text: t(locale, 'pricing.f_docs_300'), ai: false },
+        { text: t(locale, 'pricing.f_stamps_150'), ai: false },
+        { text: t(locale, 'pricing.f_auto'), ai: false }
       ],
       popular: false
     },
     {
       name: 'Ultimate',
-      desc: 'Za kompanije koje rade intenzivno i traže najviše kapacitete, AI funkcije i punu automatizaciju.',
+      desc: t(locale, 'pricing.ultimate_desc'),
       monthly: 6200,
       yearly: 5300,
       features: [
-        { text: 'Do 20 korisnika', ai: false },
-        { text: '5 radnih prostora', ai: false },
-        { text: '1000 arhiviranih dokumenata mesečno', ai: false },
-        { text: '500 vremenskih žigova mesečno', ai: false },
-        { text: 'Automatsko arhiviranje', ai: false },
-        { text: 'AI pretraga dokumenata', ai: true },
-        { text: 'Sumiranje dokumenata pomoću AI', ai: true }
+        { text: t(locale, 'pricing.f_users_20'), ai: false },
+        { text: t(locale, 'pricing.f_workspace_5'), ai: false },
+        { text: t(locale, 'pricing.f_docs_1000'), ai: false },
+        { text: t(locale, 'pricing.f_stamps_500'), ai: false },
+        { text: t(locale, 'pricing.f_auto'), ai: false },
+        { text: t(locale, 'pricing.f_ai_search'), ai: true },
+        { text: t(locale, 'pricing.f_ai_summary'), ai: true }
       ],
       popular: true
     }
   ];
 
   function formatPrice(price) {
+    if (locale === 'en') return price.toLocaleString('en-US');
+    if (locale === 'de') return price.toLocaleString('de-DE');
     return price.toLocaleString('sr-RS');
   }
 </script>
@@ -75,8 +81,8 @@
 <section class="pricing-section section" id="cenovnik">
   <div class="container">
     <div class="pricing-header text-center animate-on-scroll" use:scrollReveal>
-      <h2 class="section-title">Paketi za svako preduzeće</h2>
-      <p class="section-subtitle mx-auto">Izaberite paket koji najbolje odgovara vašim potrebama</p>
+      <h2 class="section-title">{t(locale, 'pricing.title')}</h2>
+      <p class="section-subtitle mx-auto">{t(locale, 'pricing.subtitle')}</p>
     </div>
 
     <div class="pricing-toggle-wrapper animate-on-scroll" use:scrollReveal>
@@ -87,7 +93,7 @@
           on:click={() => (isYearly = false)}
           bind:this={toggleBtns[0]}
         >
-          Mesečno
+          {t(locale, 'pricing.monthly')}
         </button>
         <button
           class="toggle-btn"
@@ -95,8 +101,8 @@
           on:click={() => (isYearly = true)}
           bind:this={toggleBtns[1]}
         >
-          Godišnje
-          <span class="toggle-badge">Uštedi 15%</span>
+          {t(locale, 'pricing.yearly')}
+          <span class="toggle-badge">{t(locale, 'pricing.save')}</span>
         </button>
         <div
           class="toggle-indicator"
@@ -114,7 +120,7 @@
           style="transition-delay: {i * 100}ms"
         >
           {#if plan.popular}
-            <div class="popular-badge">Najpopularnije</div>
+            <div class="popular-badge">{t(locale, 'pricing.popular')}</div>
           {/if}
 
           <div class="pricing-card-header">
@@ -127,7 +133,7 @@
               {formatPrice(isYearly ? plan.yearly : plan.monthly)}
             </span>
             <span class="price-currency">RSD</span>
-            <span class="price-period">mesečno</span>
+            <span class="price-period">{t(locale, 'pricing.period')}</span>
           </div>
 
           <ul class="plan-features">
@@ -149,12 +155,12 @@
           </ul>
 
           <a
-            href="/register"
+            href={localePath(locale, '/register')}
             class="btn btn-plan"
             class:btn-primary={plan.popular}
             class:btn-outline={!plan.popular}
           >
-            Isprobajte 14 dana besplatno
+            {t(locale, 'pricing.cta')}
           </a>
         </div>
       {/each}
@@ -166,7 +172,7 @@
         <path d="M8 7V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         <circle cx="8" cy="5" r="0.75" fill="currentColor"/>
       </svg>
-      <span><strong>Vremenski žigovi</strong> su digitalni potpisi sa tačnim vremenom izdavanja. Koriste se za elektronsko potpisivanje dokumenata i pravno dokazuju kada je dokument potpisan.</span>
+      <span>{@html t(locale, 'pricing.note')}</span>
     </div>
   </div>
 </section>

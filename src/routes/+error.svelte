@@ -1,6 +1,22 @@
 <script>
   import { page } from '$app/stores';
+  import { getLocaleFromParam } from '$lib/i18n';
+  import { t, localePath } from '$lib/i18n';
+
+  // Derive locale from URL path
+  $: locale = (() => {
+    const path = $page.url.pathname;
+    if (path.startsWith('/en/') || path === '/en') return 'en';
+    if (path.startsWith('/de/') || path === '/de') return 'de';
+    return 'sr';
+  })();
 </script>
+
+<svelte:head>
+  <title>Arhivix | {$page.status === 404 ? t(locale, 'error.not_found') : t(locale, 'error.generic')}</title>
+  <meta name="description" content={t(locale, 'error.desc')} />
+  <meta name="robots" content="noindex, nofollow" />
+</svelte:head>
 
 <section class="error-page">
   <div class="container">
@@ -8,20 +24,20 @@
       <span class="error-code">{$page.status}</span>
       <h1 class="error-title">
         {#if $page.status === 404}
-          Stranica nije pronađena
+          {t(locale, 'error.not_found')}
         {:else}
-          Došlo je do greške
+          {t(locale, 'error.generic')}
         {/if}
       </h1>
       <p class="error-message">
         {#if $page.status === 404}
-          Stranica koju tražite ne postoji ili je premeštena.
+          {t(locale, 'error.desc')}
         {:else}
-          {$page.error?.message || 'Nešto je pošlo po zlu. Pokušajte ponovo.'}
+          {$page.error?.message || t(locale, 'error.desc')}
         {/if}
       </p>
-      <a href="/" class="btn btn-primary btn-large">
-        Nazad na početnu
+      <a href={localePath(locale, '/')} class="btn btn-primary btn-large">
+        {t(locale, 'error.go_home')}
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>

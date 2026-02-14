@@ -1,5 +1,9 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, getContext } from 'svelte';
+  import { t, localePath } from '$lib/i18n';
+
+  const localeStore = getContext('locale');
+  $: locale = $localeStore;
 
   let heroVisible = false;
 
@@ -18,32 +22,31 @@
 
   <div class="container">
     <div class="hero-content" class:visible={heroVisible}>
-      <a href="#cenovnik" class="hero-badge">
+      <a href={localePath(locale, '/') + '#cenovnik'} class="hero-badge">
         <span class="badge-dot"></span>
-        Usklađeno sa zakonom o arhiviranju 2026
+        {t(locale, 'hero.badge')}
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
 
       <h1 class="hero-title">
-        Zaboravite na izgubljene<br />
-        dokumente. <span class="hero-title-highlight">Neka AI<br />radi umesto vas.</span>
+        {t(locale, 'hero.title_1')}<br />
+        {t(locale, 'hero.title_2')} <span class="hero-title-highlight">{t(locale, 'hero.title_highlight')}</span>
       </h1>
 
       <p class="hero-subtitle">
-        Fakture, otpremnice, arhivska knjiga. Sve na jednom mestu,<br class="hide-mobile" />
-        zaštićeno i organizovano uz pomoć veštačke inteligencije.
+        {t(locale, 'hero.subtitle')}
       </p>
 
       <div class="hero-cta">
-        <a href="/register" class="btn btn-primary btn-large hero-btn">
-          Isprobajte besplatno 14 dana
+        <a href={localePath(locale, '/register')} class="btn btn-primary btn-large hero-btn">
+          {t(locale, 'hero.cta')}
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M3.75 9H14.25M14.25 9L9.75 4.5M14.25 9L9.75 13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <span class="hero-cta-note">Bez obaveza, otkažite kad god želite</span>
+        <span class="hero-cta-note">{t(locale, 'hero.cta_note')}</span>
       </div>
 
       <div class="hero-image-wrapper">
@@ -52,7 +55,10 @@
           src="/images/misc/hero-dashboard.png"
           alt="Arhivix Dashboard"
           class="hero-image"
+          width="1920"
+          height="1080"
           loading="eager"
+          fetchpriority="high"
         />
         <div class="hero-image-shadow"></div>
       </div>
@@ -249,10 +255,6 @@
     pointer-events: none;
   }
 
-  .hide-mobile {
-    display: inline;
-  }
-
   @media (max-width: 768px) {
     .hero {
       padding: 6rem 0 2rem;
@@ -261,10 +263,6 @@
 
     .hero-subtitle {
       font-size: var(--font-size-base);
-    }
-
-    .hide-mobile {
-      display: none;
     }
   }
 

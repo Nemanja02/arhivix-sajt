@@ -18,7 +18,9 @@
       "Bash(git remote set-url:*)",
       "Bash(git branch:*)",
       "Bash(git push:*)",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "Bash(del \"c:\\\\Posao\\\\arhivix\\\\sajt2\\\\src\\\\lib\\\\data\\\\blogPosts.js\")",
+      "Bash(del \"c:\\\\Posao\\\\arhivix\\\\sajt2\\\\src\\\\lib\\\\data\\\\legalPages.js\")"
     ]
   }
 }

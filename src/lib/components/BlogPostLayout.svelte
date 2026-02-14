@@ -1,15 +1,46 @@
 <script>
+  import { getContext } from 'svelte';
   import { scrollReveal } from '$lib/actions/scrollReveal.js';
+  import { SITE_URL } from '$lib/config.js';
+  import { t, localePath, dateLocale } from '$lib/i18n';
   import SEO from './SEO.svelte';
   import Breadcrumbs from './Breadcrumbs.svelte';
-  import { getRelatedPosts } from '$lib/data/blogPosts.js';
+  import { getRelatedPosts } from '$lib/data/blogPosts/index.js';
 
   export let post;
 
-  $: related = getRelatedPosts(post.slug, 3);
+  const localeStore = getContext('locale');
+  $: locale = $localeStore;
+
+  $: related = getRelatedPosts(locale, post.slug, 3);
+
+  $: blogPostingJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    image: `${SITE_URL}${post.image}`,
+    datePublished: post.date,
+    author: {
+      '@type': 'Organization',
+      name: 'Arhivix'
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Arhivix',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/images/misc/logo.png`
+      }
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${SITE_URL}${localePath(locale, `/blog/${post.slug}`)}`
+    }
+  };
 
   function formatDate(dateStr) {
-    return new Date(dateStr).toLocaleDateString('sr-Latn-RS', {
+    return new Date(dateStr).toLocaleDateString(dateLocale(locale), {
       day: 'numeric',
       month: 'long',
       year: 'numeric'
@@ -23,14 +54,16 @@
   image={post.image}
   type="article"
   publishedDate={post.date}
+  jsonLd={blogPostingJsonLd}
+  {locale}
 />
 
 <article class="blog-post">
   <div class="container">
     <div class="blog-post-breadcrumbs">
       <Breadcrumbs items={[
-        { label: 'Početna', href: '/' },
-        { label: 'Blog', href: '/blog' },
+        { label: t(locale, 'breadcrumbs.home'), href: localePath(locale, '/') },
+        { label: t(locale, 'breadcrumbs.blog'), href: localePath(locale, '/blog') },
         { label: post.title }
       ]} />
     </div>
@@ -62,7 +95,7 @@
 
     {#if post.image}
       <div class="blog-post-hero animate-on-scroll" use:scrollReveal>
-        <img src={post.image} alt={post.title} />
+        <img src={post.image} alt={post.title} width="900" height="506" />
       </div>
     {/if}
 
@@ -75,13 +108,13 @@
     <section class="related-posts section">
       <div class="container">
         <div class="related-header text-center animate-on-scroll" use:scrollReveal>
-          <span class="section-label">Povezani članci</span>
-          <h2 class="section-title">Pročitajte još</h2>
+          <span class="section-label">{t(locale, 'blog.related')}</span>
+          <h2 class="section-title">{t(locale, 'blog.related_title')}</h2>
         </div>
         <div class="related-grid">
           {#each related as relPost, i}
             <a
-              href="/blog/{relPost.slug}"
+              href={localePath(locale, `/blog/${relPost.slug}`)}
               class="related-card animate-on-scroll"
               use:scrollReveal
               style="transition-delay: {i * 100}ms"
@@ -93,7 +126,7 @@
                 <h3>{relPost.title}</h3>
                 <p>{relPost.excerpt}</p>
                 <span class="related-read-more">
-                  Pročitaj više
+                  {t(locale, 'blog.read_more')}
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                     <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
